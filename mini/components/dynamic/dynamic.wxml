@@ -1,0 +1,23 @@
+
+<block wx:if="{{ type === 'view' }}">
+  <view class="{{ props.class }}">
+    <block wx:if="{{ children.length }}" wx:for="{{ children }}" wx:key="id">
+      <dynamic data="{{ item }}"/> <!-- 嵌套递归 -->
+    </block>
+  </view>
+</block>
+
+<block wx:elif="{{type === 'button'}}">
+  <button
+    id="{{props.id}}"
+    class="{{props.className}}"
+    bindtap="hzmTap"
+  >
+    <block wx:if="{{children.constructor === Array}}" wx:for="{{children}}" wx:key="id">{{item.content}}</block>
+  </button>
+</block>
+
+<block wx:elif="{{ type === '#text' }}">
+  {{ content }}
+</block>
+
